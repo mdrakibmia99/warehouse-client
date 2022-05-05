@@ -10,7 +10,7 @@ const Inventory = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/product/${id}`)
             .then(res => setProducts(res?.data))
-    }, [products,id]);
+    }, [products, id]);
 
     const [updateForm, setUpdateForm] = useState(false);
     const handleUpdateInfo = (event) => {
@@ -32,7 +32,7 @@ const Inventory = () => {
         const product = { qty: quantity };
         axios.put(`http://localhost:5000/product/${id}`, product)
             .then(res => {
-                console.log(res,"set value");
+                console.log(res, "set value");
                 toast('item delivered!');
             })
     };
