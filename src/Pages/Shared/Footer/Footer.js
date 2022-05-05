@@ -7,6 +7,9 @@ const Footer = () => {
   const footerImg4 = 'https://i.ibb.co/1KpMtHx/img-6.webp';
   const footerImg5 = 'https://i.ibb.co/XbV5XL3/img-7.webp';
   const footerImg6 = 'https://i.ibb.co/T8H3Nmh/img-2.webp';
+  const today = new Date();
+    const currentYear = today.getFullYear();
+
   return (
     <div style={{ maxHeight: "100%" }}>
       <footer className="text-center text-white bg-[#caced1]" >
@@ -35,7 +38,7 @@ const Footer = () => {
 
 
         <div className="text-center p-4 bg-gray-500" >
-          &copy; Copy Right
+          &copy; Copy Right {currentYear} All right reserved
         </div>
       </footer>
     </div>
