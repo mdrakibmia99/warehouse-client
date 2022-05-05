@@ -7,7 +7,7 @@ const TableView = () => {
     const [myItems] = useMyItems();
     return (
         <div className='container mx-auto mb-5'>
-            <h1 className='text-center text-4xl my-3 font-bold'>All Users Product </h1>
+            <h1 className='text-center text-4xl my-3 font-bold'>All Users Order Product </h1>
             <hr className='w-36 mx-auto py-1 mb-8 bg-[#00a1e5] rounded' />
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
