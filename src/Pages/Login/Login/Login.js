@@ -4,6 +4,7 @@ import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hook
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
@@ -13,11 +14,11 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
   const [agree, setAgree] = useState(false);
-  if (user) {
-    navigate('/home');
-  }
+  // if (user) {
+  //   navigate('/home');
+  // }
 
-  if (user1) {
+  if (user1 || user) {
 
     navigate(from, { replace: true })
   }
@@ -29,7 +30,8 @@ const Login = () => {
   }
 
   return (
-      <div className=''>
+      <div>
+        <PageTitle title={'Login'}></PageTitle>
         <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm mx-auto">
           <h2>Please Login!</h2>
           <form onSubmit={handleLogin}>

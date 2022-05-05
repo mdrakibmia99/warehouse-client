@@ -1,26 +1,77 @@
+import axios from 'axios';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
+import PageTitle from '../Shared/PageTitle/PageTitle';
 
 const AddItem = () => {
+    const [user] = useAuthState(auth);
+
+    const handleAddProduct = (event) => {
+        event.preventDefault();
+
+        const email = user.email;
+        const img = event.target.photo.value;
+        const desc = event.target.desc.value;
+        const name = event.target.name.value;
+        const price = event.target.price.value;
+        const qty = event.target.qty.value;
+        const supplier = event.target.supplier.value;
+
+        const product = { email, img, name, desc, price, qty, supplier };
+
+        axios.post('http://localhost:5000/addProduct', product)
+            .then(res => {
+                console.log(res.data);
+                toast('item added!');
+                event.target.reset();
+            })
+
+    };
+
+
     return (
-      <div className="max-w-sm bg-gray rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-        
-      <img className="rounded-t-lg" src={'https://i.ibb.co/F4jY93S/img-9.jpg'} alt="product-img" />
-      <div className="p-5">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Shari</h5>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Bypass Pancreatic Duct to Large Intestine, Percutaneous Endoscopic Approach</p>
-          <hr className='my-4' />
-          <div className='flex justify-between items-center my-4'>
-              <p className='flex items-center'>$<span className='ml-1 text-2xl text-green-600'>450.50</span></p>
-              <p className='flex items-center bg-slate-300 px-2 rounded-3xl'>QTY: <span className='ml-1 text-2xl text-indigo-600'>20</span></p>
-          </div>
-          <h5 className="mb-2 text-xl tracking-tight text-gray-900 dark:text-white flex items-center"><span className='text-sm mr-1'>Supplier: </span>Rk</h5>
-          <Link to="/" className="inline-flex items-center py-2 mt-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Manage Stock
-              <svg className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-          </Link>
-      </div>
-  </div>
+        <div className='mb-5'>
+            <PageTitle title={'Add Items'}></PageTitle>
+            <h1 className='text-center text-6xl py-4'>Add own items</h1>
+            <hr className='w-36 mx-auto border-t-4 border-[#00a1e5]' />
+            <form className='max-w-sm mx-auto  shadow-lg p-4 rounded-lg mt-8' onSubmit={handleAddProduct}>
+                <div className="relative z-0 w-full mb-6 group ">
+                    <input type="email" name="email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" value={user.email} disabled />
+                    <label htmlFor="email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter email</label>
+                </div>
+                <div className="relative z-0 w-full  mb-6 group">
+                    <input type="text" name="photo" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" />
+                    <label htmlFor="photo" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter photo url</label>
+                </div>
+                <div className="relative z-0 w-full mb-6 group">
+                    <input type="text" name="desc" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" />
+                    <label htmlFor="desc" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter product description</label>
+                </div>
+                <div className="grid xl:grid-cols-2 xl:gap-6">
+                    <div className="relative z-0 w-full mb-6 group">
+                        <input type="text" name="name" id="floating_first_name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" />
+                        <label htmlFor="floating_first_name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter product name</label>
+                    </div>
+                    <div className="relative z-0 w-full mb-6 group">
+                        <input type="text" name="price" id="floating_last_name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" />
+                        <label htmlFor="price" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter product price</label>
+                    </div>
+                </div>
+                <div className="grid xl:grid-cols-2 xl:gap-6">
+                    <div className="relative z-0 w-full mb-6 group">
+                        <input type="text" name="qty" id="floating_company" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" />
+                        <label htmlFor="qty" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter product quantity</label>
+                    </div>
+                    <div className="relative z-0 w-full mb-6 group">
+                        <input type="text" name="supplier" id="floating_company" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" autoComplete='false' />
+                        <label htmlFor="supplier" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Enter supplier name</label>
+                    </div>
+                </div>
+                <input type="submit" value="Add Item" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer" />
+            </form>
+        </div>
     );
 };
 

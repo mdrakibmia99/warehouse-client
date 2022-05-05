@@ -5,6 +5,7 @@ import Loading from '../../Shared/Loading/Loading';
 import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { toast } from 'react-toastify';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 
 const Register = () => {
@@ -50,6 +51,7 @@ const Register = () => {
     return (
 
         <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm mx-auto">
+            <PageTitle title={'Register'}></PageTitle>
             <h2>Please Register!</h2>
             <form onSubmit={handleRegistration}>
                 <div className="form-group mb-3">

@@ -4,6 +4,7 @@ import { useAuthState, useSendPasswordResetEmail } from 'react-firebase-hooks/au
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 const Reset = () => {
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
@@ -23,6 +24,7 @@ const Reset = () => {
     }
     return (
         <div className='block p-6 rounded-lg shadow-lg bg-white max-w-sm mx-auto'>
+            <PageTitle title={'Reset Password'}></PageTitle>
             <h2>Reset Your Password</h2>
             <form action="" onSubmit={handleResetPassword}>
                 <div className="form-group mb-6">

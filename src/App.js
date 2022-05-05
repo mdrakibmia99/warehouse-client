@@ -14,6 +14,7 @@ import ManageItem from './Pages/ManageItem/ManageItem';
 import AddItem from './Pages/AddItem/AddItem';
 import MyItems from './Pages/MyItems/MyItems';
 import Blog from './Pages/Blog/Blog';
+import Inventory from './Pages/Inventory/Inventory';
 
 
 function App() {
@@ -30,6 +31,11 @@ function App() {
                 <Route path='/manageitems' element={
                   <RequireAuth>
                      <ManageItem></ManageItem>
+                  </RequireAuth>
+                }></Route>
+                <Route path='/inventory/:id' element={
+                  <RequireAuth>
+                     <Inventory></Inventory>
                   </RequireAuth>
                 }></Route>
 

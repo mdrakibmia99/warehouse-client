@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/outline'
 import ProductCart from '../ProductCart/ProductCart';
+import auth from '../../firebase.init';
+import PageTitle from '../Shared/PageTitle/PageTitle';
+
 
 const Home = () => {
+    const [user] = useAuthState(auth);
+
     const navigate = useNavigate();
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/product')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, []);
+    
     const featuresForTechnicalSpecifications = [
         { name: 'Origin', description: 'Designed by Good Goods, Inc.' },
         { name: 'Material', description: 'Solid walnut base with rare earth magnets and powder coated steel card cover' },
@@ -13,43 +26,38 @@ const Home = () => {
         { name: 'Includes', description: 'Wood card tray and 3 refill packs' },
         { name: 'Considerations', description: 'Made from natural materials. Grain and color vary with each item.' },
     ];
-    const [products,setProducts]=useState([]);
-    useEffect(()=>{
-        fetch('http://localhost:5000/product')
-        .then(res=>res.json())
-        .then(data => setProducts(data))
-    },[]);
-    console.log(products);
+
 
     const features = [
         {
             name: 'Competitive exchange rates',
             description:
-                'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+                'For online transfers initiated through MyFD, a blue “Show Expense Transfer” button is displayed at the top; click on this to see the original Expense Transfer form, including notes, reason for transfer, and audit trail.',
             icon: GlobeAltIcon,
         },
         {
             name: 'No hidden fees',
             description:
-                'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+                'The original Expense Transfer can also be accessed without going through Transaction Detail by clicking the date reference in Transaction Summary or Reconciliation (in Transaction Summary the date is prepended with a "TX:").',
             icon: ScaleIcon,
         },
         {
             name: 'Transfers are instant',
             description:
-                'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+                'Item names, shown in blue along the left hand side of the report, are links to the MyFD Glossary; glossary entries provide additional explanation of the field as well as possible values.',
             icon: LightningBoltIcon,
         },
         {
             name: 'Mobile notifications',
             description:
-                'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+                'The Value column displays the specific value for that transaction, followed by the Value Description; values and descriptions will vary for each transaction.',
             icon: AnnotationIcon,
         },
     ]
-
+    console.log(user);
     return (
         <div>
+            <PageTitle title={'Home'}> </PageTitle>
             {/* banner */}
             <div className="py-12 overflow-y-hidden">
                 <dh-component>
@@ -68,38 +76,50 @@ const Home = () => {
                         </div>
                         <div className="container mx-auto flex justify-center md:-mt-56 -mt-20 sm:-mt-40">
                             <div className="relative sm:w-2/3 w-11/12">
-                                <img src="https://garryblack.com/blog/wp-content/uploads/2011/10/Ottawa_Model_Workshop11.jpg" alt="Sample Page" className='rounded-lg' />
+                                <img src="https://i.ibb.co/gFNhncS/herosection.jpg" alt="Sample Page" className='rounded-lg' />
                             </div>
                         </div>
                     </div>
                 </dh-component>
             </div>
-            
 
 
 
-            {/* product section  */}
+
+            {/* product section  start*/}
+
             <section className=' py-5 bg-gray-100 '>
-               <div className='grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 container gap-5'>
-               {products.slice(0,6).map(product => <ProductCart
-                  key={product._id}
-                   product={product}
-                   ></ProductCart>
-               )}
+                <h1 className='text-center text-6xl py-2'>Our Services</h1>
+                <hr className='w-36 mx-auto rounded-lg  py-1 bg-[blue]' />
+                <div className='grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 mt-5 container gap-5'>
+                    {products.slice(7, 13).map(product => <ProductCart
+                        key={product._id}
+                        product={product}
+                    ></ProductCart>
+                    )}
+                </div>
+               <div className='text-center mt-5'>  
+
+               <Link to={'/manageitems'}>
+               <input type="submit" 
+               value="See More..."
+               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer" />
+               
+               </Link>
                </div>
             </section>
-               
+            {/* product section  end*/}
 
 
 
 
 
-          {/* section  */}
+            {/* my extra section 1 */}
             <section className="relative py-20 2xl:py-40 bg-gray-800 overflow-hidden">
                 <div className="bg-white">
                     <div className="max-w-2xl mx-auto py-24 px-4 grid items-center grid-cols-1 gap-y-16 gap-x-8 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8 lg:grid-cols-2">
                         <div>
-                            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Technical Specifications for our work</h2>
+                            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">The way how we store goods</h2>
                             <p className="mt-4 text-gray-500">
                                 The walnut wood card tray is precision milled to perfectly fit a stack of Focus cards. The powder coated
                                 steel divider separates active cards from new ones, or can be used to archive important task lists.
@@ -147,9 +167,8 @@ const Home = () => {
                         <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                             A better way to send money
                         </p>
-                        <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-                            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in
-                            accusamus quisquam.
+                        <p className="mt-4 container  text-xl text-gray-500 lg:mx-auto">
+                            The Transaction Detail is the information about a transaction that is able to be reviewed from multiple reports like Transaction Summary or Reconciliation reports. Click on the linked Description or the linked 6-digit Account Code in the Transaction Summary report or the Reconciliation report to drill down to the Transaction Detail. Users can create ad-hoc reports using the Query tool to retrieve the transaction detail fields for multiple transactions at once. The most common query to retrieve Transaction Detail data is the Transaction Summary reporting template in the Query tool.
                         </p>
                     </div>
 
