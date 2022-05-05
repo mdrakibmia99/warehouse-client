@@ -15,6 +15,7 @@ import AddItem from './Pages/AddItem/AddItem';
 import MyItems from './Pages/MyItems/MyItems';
 import Blog from './Pages/Blog/Blog';
 import Inventory from './Pages/Inventory/Inventory';
+import TableView from './Pages/Table/TableView';
 
 
 function App() {
@@ -28,6 +29,11 @@ function App() {
                 <Route path='/login' element={<Login></Login>}></Route>
                 <Route path='/register' element={<Register></Register>}></Route>
                 <Route path='/reset' element={<Reset></Reset>}></Route>
+                <Route path='allOrderProduct' element={
+                  <RequireAuth>
+                    <TableView></TableView>
+                  </RequireAuth>
+                }></ Route>
                 <Route path='/manageitems' element={
                   <RequireAuth>
                      <ManageItem></ManageItem>

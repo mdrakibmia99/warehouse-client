@@ -31,7 +31,7 @@ const ManageItem = () => {
             <PageTitle title={'Manage Item'}></PageTitle>
             <div className='bg-gray-400 py-4 md:px-2 px-2 lg:px-0'>
                 <h1 className='text-center text-6xl py-2'>Our Services</h1>
-                <hr className='w-36 mx-auto rounded-lg  py-1 bg-[blue]' />
+                <hr className='w-36 mx-auto rounded-lg  py-1 bg-[#00a1e5]' />
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 max-w-7xl mx-auto gap-y-12 md:gap-x-8 py-12'>
                     {
 

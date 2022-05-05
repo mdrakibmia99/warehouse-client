@@ -53,6 +53,11 @@ const Header = () => {
                                     <CustomLink to={'/myitems'} className='px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75' > My Items</CustomLink>
                                 </li>
                             }
+                            {
+                                user && <li className="nav-item">
+                                    <CustomLink to={'/allOrderProduct'} className='px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75' > All Orders</CustomLink>
+                                </li>
+                            }
                             <li className="nav-item">
 
                                 <CustomLink to={'/blog'} className='px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75' >Blog</CustomLink>

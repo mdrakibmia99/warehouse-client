@@ -23,7 +23,6 @@ const AddItem = () => {
 
         axios.post('https://desolate-ridge-35981.herokuapp.com/addProduct', product)
             .then(res => {
-                console.log(res.data);
                 toast('item added!');
                 event.target.reset();
             })
@@ -34,8 +33,8 @@ const AddItem = () => {
     return (
         <div className='mb-5'>
             <PageTitle title={'Add Items'}></PageTitle>
-            <h1 className='text-center text-6xl py-4'>Add own items</h1>
-            <hr className='w-36 mx-auto border-t-4 border-[#00a1e5]' />
+            <h1 className='text-center text-6xl py-2'>Add own items</h1>
+            <hr className='w-36 mx-auto py-1 bg-[#00a1e5] rounded'/>
             <form className='max-w-sm mx-auto  shadow-lg p-4 rounded-lg mt-8' onSubmit={handleAddProduct}>
                 <div className="relative z-0 w-full mb-6 group ">
                     <input type="email" name="email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required="" value={user.email} disabled />

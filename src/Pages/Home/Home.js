@@ -54,7 +54,6 @@ const Home = () => {
             icon: AnnotationIcon,
         },
     ]
-    console.log(user);
     return (
         <div>
             <PageTitle title={'Home'}> </PageTitle>
@@ -90,7 +89,7 @@ const Home = () => {
 
             <section className=' py-5 bg-gray-100 '>
                 <h1 className='text-center text-6xl py-2'>Our Services</h1>
-                <hr className='w-36 mx-auto rounded-lg  py-1 bg-[blue]' />
+                <hr className='w-36 mx-auto rounded-lg  py-1 bg-[#00a1e5]' />
                 <div className='grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 mt-5 container gap-5'>
                     {products.slice(7, 13).map(product => <ProductCart
                         key={product._id}

@@ -21,7 +21,7 @@ const Inventory = () => {
         const product = { img, name, price };
         axios.put(`https://desolate-ridge-35981.herokuapp.com/product/${id}`, product)
             .then(res => {
-                console.log(res.data);
+
                 toast('item updated!');
                 event.target.reset();
             })
@@ -32,7 +32,6 @@ const Inventory = () => {
         const product = { qty: quantity };
         axios.put(`https://desolate-ridge-35981.herokuapp.com/product/${id}`, product)
             .then(res => {
-                console.log(res, "set value");
                 toast('item delivered!');
             })
     };
@@ -46,7 +45,6 @@ const Inventory = () => {
             const product = { qty };
             axios.put(`https://desolate-ridge-35981.herokuapp.com/product/${id}`, product)
                 .then(res => {
-                    console.log(res.data);
                     event.target.reset();
                     toast('item restocked!');
                 })

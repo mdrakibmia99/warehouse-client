@@ -27,7 +27,6 @@ const MyItems = () => {
         if (yes) {
             axios.delete(`https://desolate-ridge-35981.herokuapp.com/myItems/${id}`)
                     .then(res => {
-                console.log(res.data);
                 toast('item deleted!');
             })
         }
@@ -38,7 +37,7 @@ const MyItems = () => {
             <PageTitle title={'My Items'}></PageTitle>
             <section className=' py-5 bg-gray-100 '>
                 <h1 className='text-center text-6xl py-2'>My Items</h1>
-                <hr className='w-36 mx-auto rounded-lg  py-1 bg-[blue]' />
+                <hr className='w-36 mx-auto rounded-lg  py-1 bg-[#00a1e5]' />
                 <div className='grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 mt-5 container gap-5'>
                     {orders.map(product => <ProductCart
                         key={product._id}

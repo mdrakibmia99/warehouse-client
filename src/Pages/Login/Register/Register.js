@@ -13,12 +13,10 @@ const Register = () => {
     const [user] = useAuthState(auth);
     const [createUserWithEmailAndPassword, user1, loading] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [agree, setAgree] = useState(false);
-    console.log(agree);
     const [updateProfile, updating,] = useUpdateProfile(auth);
     const navigate = useNavigate();
 
     if (user) {
-        console.log('register', user)
         navigate('/home');
     }
 
@@ -29,7 +27,6 @@ const Register = () => {
         const password = event.target.password.value;
         const confirmPassword = event.target.confirmPassword.value;
         const dpUrl=event.target.imgLink.value;
-        console.log(name, email, password, confirmPassword);
         if (password !== confirmPassword) {
             setError('Password Did not Match!!')
         } else if (password.length < 6) {
