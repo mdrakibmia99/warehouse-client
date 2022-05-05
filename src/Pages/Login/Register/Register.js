@@ -19,7 +19,7 @@ const Register = () => {
 
 
     
-    if (user ) {
+    if (user) {
         console.log('register', user)
         navigate('/home');
     }
@@ -41,12 +41,8 @@ const Register = () => {
             await createUserWithEmailAndPassword(email, password);
             await updateProfile({ displayName: name,photoURL:dpUrl });
             toast('Registration Successful');
+            
         }
-
-
-
-
-
     }
     return (
 

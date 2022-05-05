@@ -1,17 +1,26 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import auth from '../../firebase.init';
 import ProductCart from '../ProductCart/ProductCart';
 import PageTitle from '../Shared/PageTitle/PageTitle';
 
 const MyItems = () => {
-    const [products, setProducts] = useState([]);
+    const [orders,setOrders]=useState([]);
+    const [user]=useAuthState(auth);
 
     useEffect(() => {
-        fetch('http://localhost:5000/myProduct')
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, []);
+        const getOrders = async () => {
+            const url = `http://localhost:5000/order?email=${user?.email}`;
+            const { data } = await axios.get(url);
+            setOrders(data);
+        
+        };
+        getOrders();
+    }, [user,orders]);
+
+
     const handleDeleteItem = (id) => {
 
         const yes = window.confirm('Want to delete this item?');
@@ -20,7 +29,6 @@ const MyItems = () => {
                     .then(res => {
                 console.log(res.data);
                 toast('item deleted!');
-                window.location.reload();
             })
         }
 
@@ -32,7 +40,7 @@ const MyItems = () => {
                 <h1 className='text-center text-6xl py-2'>My Items</h1>
                 <hr className='w-36 mx-auto rounded-lg  py-1 bg-[blue]' />
                 <div className='grid lg:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 mt-5 container gap-5'>
-                    {products.map(product => <ProductCart
+                    {orders.map(product => <ProductCart
                         key={product._id}
                         product={product}
                     >

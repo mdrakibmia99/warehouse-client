@@ -1,40 +1,43 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useMyItems from '../../Hooks/useMyItems';
-import useProducts from '../../Hooks/useProducts';
 
 const Inventory = () => {
     const { id } = useParams();
-    const [products] = useProducts();
-    const [myItems] = useMyItems();
+    const [products, setProducts] = useState([]);
 
+    useEffect(() => {
+        axios.get(`http://localhost:5000/product/${id}`)
+            .then(res => setProducts(res?.data))
+    }, [products,id]);
+
+    // const [myItems] = useMyItems();
     const [updateForm, setUpdateForm] = useState(false);
 
-    const matchedProducts = products.filter(product => product?._id === id);
-    const matchedItems = myItems.filter(item => item?._id === id);
-    let finalMatch, slug;
+    // const matchedProducts = products.filter(product => product?._id === id);
+    // const matchedItems = myItems.filter(item => item?._id === id);
+    // let finalMatch, slug;
 
-    if (matchedItems.length !== 0) {
-        finalMatch = matchedItems;
-        slug = 'myItems';
-    }
-    else {
-        finalMatch = matchedProducts;
-        slug = 'product';
-    }
+    // if (matchedItems.length !== 0) {
+    //     finalMatch = matchedItems;
+    //     slug = 'myItems';
+    // }
+    // else {
+    //     finalMatch = matchedProducts;
+    //     slug = 'product';
+    // }
 
     const handleUpdateInfo = (event) => {
         event.preventDefault();
         const name = event.target.name.value;
         const price = event.target.price.value;
         const img = event.target.photo.value;
-
         const product = { img, name, price };
-        // console.log(product);
 
-        axios.put(`http://localhost:5000/${slug}/${id}`, product)
+        // axios.put(`http://localhost:5000/${slug}/${id}`, product)
+        axios.put(`http://localhost:5000/product/${id}`, product)
             .then(res => {
                 console.log(res.data);
                 toast('item updated!');
@@ -43,35 +46,38 @@ const Inventory = () => {
     };
 
     const handleItemReduce = () => {
-        const quantity = finalMatch[0]?.qty - 1;
+        const quantity = products?.qty - 1;
+        // const quantity = finalMatch[0]?.qty - 1;
         const product = { qty: quantity };
 
-        axios.put(`http://localhost:5000/${slug}/${id}`, product)
+        axios.put(`http://localhost:5000/product/${id}`, product)
             .then(res => {
-                console.log(res.data);
+                console.log(res,"set value");
                 toast('item delivered!');
-                window.location.reload();
+                // window.location.reload();
             })
     };
 
     const handleItemIncrease = (event) => {
         event.preventDefault();
         const updateQuantity = parseInt(event.target.number.value);
-        if(updateQuantity>0){
+        if (updateQuantity > 0) {
 
-            const qty = finalMatch[0]?.qty + updateQuantity;
+            const qty = products?.qty + updateQuantity;
+            // const qty = finalMatch[0]?.qty + updateQuantity;
             const product = { qty };
-    
-            axios.put(`http://localhost:5000/${slug}/${id}`, product)
+
+            // axios.put(`http://localhost:5000/${slug}/${id}`, product)
+            axios.put(`http://localhost:5000/product/${id}`, product)
                 .then(res => {
                     console.log(res.data);
+                    event.target.reset();
                     toast('item restocked!');
-                    window.location.reload();
                 })
-        }else{
+        } else {
             toast("Please input value getter than 0");
         }
-        
+
     };
 
     return (
@@ -82,22 +88,29 @@ const Inventory = () => {
                         <div className="w-full sm:w-1/2 md:w-3/4 xl:w-2/4 p-4">
                             <div className="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                                 <div className="relative pb-48 overflow-hidden">
-                                    <img className="absolute inset-0 h-full w-full object-cover object-top" src={finalMatch[0]?.img} alt="" />
+                                    <img className="absolute inset-0 h-full w-full object-cover object-top" src={products?.img} alt="" />
+                                    {/* <img className="absolute inset-0 h-full w-full object-cover object-top" src={finalMatch[0]?.img} alt="" /> */}
                                 </div>
                                 <div className="p-4">
-                                    <span className="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{finalMatch[0]?._id}</span>
-                                    <h2 className="mt-2 mb-2  font-bold">{finalMatch[0]?.name}</h2>
-                                    <p className="text-sm">{finalMatch[0]?.desc}</p>
+                                    <span className="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{products?._id}</span>
+                                    {/* <span className="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{finalMatch[0]?._id}</span> */}
+                                    <h2 className="mt-2 mb-2  font-bold">{products.name}</h2>
+                                    <p className="text-sm">{products.desc}</p>
+                                    {/* <h2 className="mt-2 mb-2  font-bold">{finalMatch[0]?.name}</h2>
+                                    <p className="text-sm">{finalMatch[0]?.desc}</p> */}
                                     <div className="mt-3 flex items-center">
-                                        <span className="text-sm font-semibold">Price:</span>&nbsp;<span className="font-bold text-xl">{finalMatch[0]?.price}</span>&nbsp;<span className="text-sm font-semibold">$</span>
+                                        {/* <span className="text-sm font-semibold">Price:</span>&nbsp;<span className="font-bold text-xl">{finalMatch[0]?.price}</span>&nbsp;<span className="text-sm font-semibold">$</span> */}
+                                        <span className="text-sm font-semibold">Price:</span>&nbsp;<span className="font-bold text-xl">{products.price}</span>&nbsp;<span className="text-sm font-semibold">$</span>
                                     </div>
                                 </div>
                                 <div className="p-4 border-t border-b text-xs text-gray-700">
                                     <span className="flex items-center mb-1">
-                                        <i className="fa fa-clock-o mr-1" aria-hidden="true"></i> <b className='mr-1'>QTY:</b><span className='bg-indigo-500 text-white rounded p-1'>{finalMatch[0]?.qty}</span>
+                                        <i className="fa fa-clock-o mr-1" aria-hidden="true"></i> <b className='mr-1'>QTY:</b><span className='bg-indigo-500 text-white rounded p-1'>{products?.qty}</span>
+                                        {/* <i className="fa fa-clock-o mr-1" aria-hidden="true"></i> <b className='mr-1'>QTY:</b><span className='bg-indigo-500 text-white rounded p-1'>{finalMatch[0]?.qty}</span> */}
                                     </span>
                                     <span className="flex items-center">
-                                        <i className="fa fa-unlock mr-1" aria-hidden="true"></i> <b className='mr-1'>SUPPLIER:</b>{finalMatch[0]?.supplier}
+                                        <i className="fa fa-unlock mr-1" aria-hidden="true"></i> <b className='mr-1'>SUPPLIER:</b>{products?.supplier}
+                                        {/* <i className="fa fa-unlock mr-1" aria-hidden="true"></i> <b className='mr-1'>SUPPLIER:</b>{finalMatch[0]?.supplier} */}
                                     </span>
                                 </div>
                                 <div className="p-4 flex items-center text-sm text-gray-600"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -175,15 +188,18 @@ const Inventory = () => {
                         <form className=' w-2/4 mx-auto ' onSubmit={handleUpdateInfo}>
                             <div className="mb-6">
                                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">New name</label>
-                                <input name='name' type="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`i.e. ${finalMatch[0]?.name}`} required />
+                                <input name='name' type="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`i.e. ${products?.name}`} required />
+                                {/* <input name='name' type="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`i.e. ${finalMatch[0]?.name}`} required /> */}
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">New price</label>
-                                <input name='price' type="number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`i.e. $ ${finalMatch[0]?.price}`} required />
+                                <input name='price' type="number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`i.e. $ ${products?.price}`} required />
+                                {/* <input name='price' type="number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`i.e. $ ${finalMatch[0]?.price}`} required /> */}
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="photo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">New photo url</label>
-                                <input name='photo' type="photo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`i.e. ${finalMatch[0]?.img}`} required />
+                                <input name='photo' type="photo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`i.e. ${products?.img}`} required />
+                                {/* <input name='photo' type="photo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`i.e. ${finalMatch[0]?.img}`} required /> */}
                             </div>
                             <input type="submit" value="Update info" className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer" style={{ display: 'block', width: '100%' }} />
                         </form>

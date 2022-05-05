@@ -58,9 +58,12 @@ const Header = () => {
                                 <CustomLink to={'/blog'} className='px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75' >Blog</CustomLink>
                             </li>
                             {
-                                user && <li className="nav-item">
+                                user ? <li className="nav-item">
                                     <button className='lg:border-2  sm:border-0 px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75' onClick={handleSignOut}>LogOut </button>
-                                </li>
+                                </li>:
+                                <li className="nav-item">
+                                <CustomLink to={'/login'} className='lg:border-2 sm:border-0 px-3 py-2 flex items-center text-xs uppercase font-bold  text-white hover:opacity-75' > LogIn</CustomLink>
+                            </li>
                             }
 
 
@@ -73,9 +76,7 @@ const Header = () => {
                                     <img src={user.photoURL} alt="dp" className='rounded-full w-8 h-8 mr-2' />
                                 </li>
                                 :
-                                <li className="nav-item">
-                                    <CustomLink to={'/login'} className='lg:border-2 sm:border-0 px-3 py-2 flex items-center text-xs uppercase font-bold  text-white hover:opacity-75' > LogIn</CustomLink>
-                                </li>
+                                ""
 
                             }
                         </ul>
