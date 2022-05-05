@@ -17,8 +17,6 @@ const Register = () => {
     const [updateProfile, updating,] = useUpdateProfile(auth);
     const navigate = useNavigate();
 
-
-    
     if (user) {
         console.log('register', user)
         navigate('/home');
@@ -32,7 +30,6 @@ const Register = () => {
         const confirmPassword = event.target.confirmPassword.value;
         const dpUrl=event.target.imgLink.value;
         console.log(name, email, password, confirmPassword);
-
         if (password !== confirmPassword) {
             setError('Password Did not Match!!')
         } else if (password.length < 6) {
@@ -44,6 +41,7 @@ const Register = () => {
             
         }
     }
+    
     return (
 
         <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm mx-auto">

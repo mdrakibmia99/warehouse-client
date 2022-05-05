@@ -9,7 +9,7 @@ import CustomLink from '../CustomLink/CustomLink';
 
 
 const Header = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [navbarOpen, setNavbarOpen] = useState(false);
     const handleSignOut = () => {
         signOut(auth);
