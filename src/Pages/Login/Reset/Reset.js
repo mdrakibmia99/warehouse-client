@@ -16,7 +16,6 @@ const Reset = () => {
     const handleResetPassword = async event => {
         event.preventDefault();
         const email = event.target.email.value;
-        console.log(email);
         await sendPasswordResetEmail(email);
         toast('Please check you email.');
         event.target.reset();
