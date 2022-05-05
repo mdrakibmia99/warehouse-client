@@ -13,7 +13,7 @@ const Home = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/product')
+        fetch('https://desolate-ridge-35981.herokuapp.com/product')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);
@@ -69,7 +69,7 @@ const Home = () => {
                                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-white font-bold leading-tight">Powerful people come from powerfull place!</h1>
                             </div>
                             <div className="flex justify-center items-center mb-8">
-                                <button onClick={() => navigate('/addItems')} className="hover:text-black hover:bg-transparent lg:text-xl  hover:border-white border bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-indigo-700	focus:ring-white rounded text-indigo-700 px-4 sm:px-8 py-1 sm:py-3 text-sm">Get Started</button>
+                                <button onClick={() => navigate('/addItems')} className="bg-white  hover:bg-black lg:text-xl  hover:border-white border  transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-indigo-700	focus:ring-white rounded text-indigo-700 px-4 sm:px-8 py-1 sm:py-3 text-sm">Get Started</button>
                                 <button onClick={() => navigate('/blog')} className="hover:bg-white hover:text-indigo-600 lg:text-xl hover:border-indigo-600 ml-3 sm:ml-6 bg-transparent transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-indigo-700 focus:ring-white hover:bg-indigo-700-800 rounded border border-white text-white px-4 sm:px-8 py-1 sm:py-3 text-sm">Learn More</button>
                             </div>
                             <p className='text-white text-center'>If you think you are bad then I'm your dad!</p>

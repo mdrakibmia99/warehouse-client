@@ -8,7 +8,7 @@ const Inventory = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/product/${id}`)
+        axios.get(`https://desolate-ridge-35981.herokuapp.com/product/${id}`)
             .then(res => setProducts(res?.data))
     }, [products, id]);
 
@@ -19,7 +19,7 @@ const Inventory = () => {
         const price = event.target.price.value;
         const img = event.target.photo.value;
         const product = { img, name, price };
-        axios.put(`http://localhost:5000/product/${id}`, product)
+        axios.put(`https://desolate-ridge-35981.herokuapp.com/product/${id}`, product)
             .then(res => {
                 console.log(res.data);
                 toast('item updated!');
@@ -30,7 +30,7 @@ const Inventory = () => {
     const handleItemReduce = () => {
         const quantity = products?.qty - 1;
         const product = { qty: quantity };
-        axios.put(`http://localhost:5000/product/${id}`, product)
+        axios.put(`https://desolate-ridge-35981.herokuapp.com/product/${id}`, product)
             .then(res => {
                 console.log(res, "set value");
                 toast('item delivered!');
@@ -44,7 +44,7 @@ const Inventory = () => {
 
             const qty = products?.qty + updateQuantity;
             const product = { qty };
-            axios.put(`http://localhost:5000/product/${id}`, product)
+            axios.put(`https://desolate-ridge-35981.herokuapp.com/product/${id}`, product)
                 .then(res => {
                     console.log(res.data);
                     event.target.reset();

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
-import navbarLogo from '../../../imges/nav-var-img.png'
+import navbarLogo from '../../../imges/navbar logo/navvarLogo1.png'
 import CustomLink from '../CustomLink/CustomLink';
 
 
