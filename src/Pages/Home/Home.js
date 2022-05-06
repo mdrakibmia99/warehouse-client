@@ -5,6 +5,33 @@ import ProductCart from '../ProductCart/ProductCart';
 import PageTitle from '../Shared/PageTitle/PageTitle';
 import Loading from '../Shared/Loading/Loading';
 import './Home.css';
+import { Cursor, useTypewriter } from 'react-simple-typewriter';
+
+
+
+// TypewriterHook use from npm i react-simple-typewriter 
+
+const TypewriterHook = () => {
+ 
+    const { text} = useTypewriter({
+      words:[' Business opportunities are like buses, there\'s always another one coming',
+             'Success usually comes to those who are too busy to be looking for it',
+             'There\'s no shortage of remarkable ideas, what\'s missing is the will to execute them',
+             'I don\'t know the word quit. Either I never did, or I have abolished it',
+             'If you really look closely, most overnight successes took a long time'] ,
+      loop: Infinity,
+      typeSpeed: 100,
+      deleteSpeed:50,
+    })
+  
+    return (
+      <div>
+        <span>{text}</span>
+        <Cursor />
+      </div>
+    )
+  }
+//   TypewriterHook end 
 
 
 const Home = () => {
@@ -65,7 +92,11 @@ const Home = () => {
                             <img className="mr-2 lg:mr-12 mt-2 lg:mt-12 absolute right-0 top-0" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg2.svg" alt="bg" />
                             <img className="ml-2 lg:ml-12 mb-2 lg:mb-12 absolute bottom-0 left-0" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg3.svg" alt="bg" />
                             <div className="w-11/12 sm:w-2/3 mb-5 sm:mb-10">
-                                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-white font-bold leading-tight">Business opportunities are like buses, there's always another one coming</h1>
+                                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-white font-bold leading-tight">
+                                   
+                                <TypewriterHook></TypewriterHook>
+                                    
+                                    </h1>
                             </div>
                             <div className="flex justify-center items-center mb-8">
                                 <button onClick={() => navigate('/addItems')} className="get-started-btn lg:text-xl border rounded px-4 sm:px-8 py-1 sm:py-3 text-sm">Get Started</button>
