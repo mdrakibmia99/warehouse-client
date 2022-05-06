@@ -27,7 +27,6 @@ const Login = () => {
     signInWithEmailAndPassword(email, password);
     const {data}=await axios.post('https://desolate-ridge-35981.herokuapp.com/login',{email})
        localStorage.setItem('accessToken',data.token)
-        navigate(from, { replace: true });
   }
 
   return (

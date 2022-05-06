@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth'
 import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/outline'
 import ProductCart from '../ProductCart/ProductCart';
-import auth from '../../firebase.init';
 import PageTitle from '../Shared/PageTitle/PageTitle';
+import Loading from '../Shared/Loading/Loading';
 
 
 const Home = () => {
-    const [user] = useAuthState(auth);
+
 
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -17,7 +16,7 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);
-    
+
     const featuresForTechnicalSpecifications = [
         { name: 'Origin', description: 'Designed by Good Goods, Inc.' },
         { name: 'Material', description: 'Solid walnut base with rare earth magnets and powder coated steel card cover' },
@@ -97,15 +96,19 @@ const Home = () => {
                     ></ProductCart>
                     )}
                 </div>
-               <div className='text-center mt-5'>  
+                {products.length === 0 &&
+                            <Loading ></Loading>
+                        }
 
-               <Link to={'/manageitems'}>
-               <input type="submit" 
-               value="See More..."
-               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer" />
-               
-               </Link>
-               </div>
+                <div className='text-center mt-5'>
+
+                    <Link to={'/manageitems'}>
+                        <input type="submit"
+                            value="See More..."
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer" />
+
+                    </Link>
+                </div>
             </section>
             {/* product section  end*/}
 

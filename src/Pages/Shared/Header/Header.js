@@ -58,7 +58,7 @@ const Header = () => {
                                     <CustomLink to={'/allOrderProduct'} className='px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75' > All Orders</CustomLink>
                                 </li>
                             }
-                            <li className="nav-item">
+                            <li className="nav-item mr-2">
 
                                 <CustomLink to={'/blog'} className='px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75' >Blog</CustomLink>
                             </li>

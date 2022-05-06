@@ -175,32 +175,6 @@ const Register = () => {
                 <SocialLogin></SocialLogin>
             </form>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-        // <div>
-        //     <h2>this is register page </h2>
-        //     <form onSubmit={handleRegistration}>
-        //         <input type="text" name='name' placeholder='Enter your name' required />
-        //         <input type="email" name="email" placeholder='Email' required />
-        //         <input type="password" name="password" placeholder='Password' required />
-        //         <input type="password" name="confirmPassword" placeholder='Confirm Password' required />
-        //         <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
-        //         <label htmlFor="terms">Accept warehouse Terms and Conditions</label>
-        //         {/* <label className={`ps-2 ${agree ? '' : 'text-danger'}`} htmlFor="terms">Accept warehouse Terms and Conditions</label> */}
-        //         <input type="submit" disabled={!agree} value="Registration" />
-        //     </form>
-        //     <p style={{ color: 'red' }}> {error}</p>
-        //     <SocialLogin></SocialLogin>
-        // </div>
     );
 };
 
