@@ -1,0 +1,21 @@
+.get-started-btn{
+    background-color: transparent;
+    color: white;
+    
+  }
+.learn-more-btn{
+    background-color: white;
+    color: black;
+
+}
+
+.learn-more-btn:hover{
+    background-color: transparent;
+    color: white;
+
+}
+.get-started-btn:hover{
+  background-color: white;
+  color: black;
+  
+}

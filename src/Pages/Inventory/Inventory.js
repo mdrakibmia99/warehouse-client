@@ -59,11 +59,12 @@ const Inventory = () => {
             <div className="antialiased bg-gray-200 text-gray-900 font-sans p-6">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap justify-center -mx-4">
-                        <div className="w-full sm:w-1/2 md:w-3/4 xl:w-2/4 p-4">
-                            <div className="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
-                                <div className="relative pb-48 overflow-hidden">
+                        <div className="w-full xl:w-3/4 p-4">
+                            <div className="c-card  bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden lg:flex md:flex sm:block">
+                                <div className="relative lg:w-1/2 md:w-1/2 pb-48 overflow-hidden">
                                     <img className="absolute inset-0 h-full w-full object-cover object-top" src={products?.img} alt="" />
                                 </div>
+                                <div>
                                 <div className="p-4">
                                     <span className="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">{products?._id}</span>
                                     <h2 className="mt-2 mb-2  font-bold">{products.name}</h2>
@@ -103,16 +104,47 @@ const Inventory = () => {
                                         </path>
                                     </svg><span className="ml-2">Top Rated</span>
                                 </div>
+                                </div>
                             </div>
                             <div className='mt-4 border-t-2 border-black flex justify-between'>
-                                <button className="text-sky-500 border-2 border-sky-500 hover:bg-sky-500 hover:text-white active:bg-sky-600 font-bold uppercase text-sm px-6 py-2 rounded outline-none focus:outline-none mr-1 mb-1 mt-4 ease-linear transition-all duration-150" type="button"
+                                <button className="text-sky-500 
+                                                    border-2 
+                                                    border-sky-500 
+                                                    hover:bg-sky-500 
+                                                    hover:text-white 
+                                                    active:bg-sky-600 
+                                                    font-bold 
+                                                    uppercase 
+                                                    text-sm 
+                                                    px-6 
+                                                    py-2 
+                                                    rounded 
+                                                    outline-none 
+                                                    focus:outline-none 
+                                                    mr-1 mb-1 mt-4 
+                                                    ease-linear 
+                                                    transition-all 
+                                                    duration-150" type="button"
                                     onClick={() => {
                                         setUpdateForm(!updateForm);
                                     }}
                                 >
                                     Update item
                                 </button>
-                                <button className="text-red-500 border-2 border-red-500 hover:bg-red-500 hover:text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-2 rounded outline-none focus:outline-none mr-1 mb-1 mt-4 ease-linear transition-all duration-150" type="button"
+                                <button className="text-red-500 
+                                                    border-2 
+                                                    border-red-500 
+                                                    hover:bg-red-500 
+                                                    hover:text-white 
+                                                    active:bg-red-600 
+                                                    font-bold uppercase 
+                                                    text-sm px-6 py-2 
+                                                    rounded 
+                                                    outline-none 
+                                                    focus:outline-none 
+                                                    mr-1 mb-1 mt-4 ease-linear 
+                                                    transition-all 
+                                                    duration-150" type="button"
                                     onClick={handleItemReduce}
                                 >
                                     Deliver item

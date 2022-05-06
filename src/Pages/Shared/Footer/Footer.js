@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <div style={{ maxHeight: "100%" }}>
       <footer className="text-center text-white bg-[#caced1]" >
-        <div className="container p-6">
+        <div className="container p-6 ">
           <div className="grid lg:grid-cols-6 md:grid-cols-3 gap-4">
             <div className="lg:mb-0 mb-6">
               <img src={footerImg1} alt="footerImg" className="w-full rounded-md shadow-lg" />
