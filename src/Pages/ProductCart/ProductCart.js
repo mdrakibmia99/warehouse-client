@@ -5,8 +5,8 @@ const ProductCart = ({ product, children }) => {
     const { name, img, desc, price, supplier, qty, _id } = product;
 
     return (
-        <div className="flex justify-center transition duration-200 ease-in-out">
-            <div className="rounded-lg shadow-xl bg-white max-w-sm overflow-hidden relative">
+        <div className="flex justify-center ">
+            <div className="rounded-lg shadow-xl hover:scale-[0.95] transition duration-300 ease-in-out bg-white max-w-sm overflow-hidden relative">
                 <img className="rounded-t-lg hover:scale-[0.9] hover:rounded-xl transition duration-200 ease-in-out" src={img} alt="" />
                 <div className="p-3 ">
                     <h5 className="text-black-900 

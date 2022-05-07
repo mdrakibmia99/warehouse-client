@@ -11,7 +11,7 @@ const TableCart = (props) => {
                 {email}
             </td>
             <td className="px-6 py-4">
-                <img src={img} alt="product-icon" className='w-8 rounded' />
+                <img src={img}  alt="product-icon" className='w-8 rounded hover:scale-[3] transition duration-300 ease-in-out' />
             </td>
             <td className="px-6 py-4">
                 {name}

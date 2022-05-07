@@ -62,7 +62,7 @@ const Inventory = () => {
                         <div className="w-full xl:w-3/4 p-4">
                             <div className="c-card  bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden lg:flex md:flex sm:block">
                                 <div className="relative lg:w-1/2 md:w-1/2 pb-48 overflow-hidden">
-                                    <img className="absolute inset-0 h-full w-full object-cover object-top" src={products?.img} alt="" />
+                                    <img className="absolute inset-0 h-full w-full object-cover object-top hover:scale-[0.9] transition duration-300 ease-in-out" src={products?.img} alt="" />
                                 </div>
                                 <div>
                                 <div className="p-4">
