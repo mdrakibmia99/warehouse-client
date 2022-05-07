@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { SocialIcon } from 'react-social-icons';
+import './Footer.css'
 
 const Footer = () => {
   const footerImg1 = 'https://i.ibb.co/H28Hy9y/img-1.webp';
@@ -12,8 +15,17 @@ const Footer = () => {
 
   return (
     <div style={{ maxHeight: "100%" }}>
-      <footer className="text-center text-white bg-[#caced1]" >
-        <div className="container p-6 ">
+      <footer className="text-center text-white bg-gray-500" >
+      <div className='container mx-auto  rounded-xl py-4 flex justify-center items-center'>
+                <h2 className='text-white mr-4 hidden lg:block md:block'>Connect with me there:</h2>
+                <div className='grid lg:grid-cols-5 gap-2 md:grid-cols-4 grid-cols-4'>
+                    <SocialIcon className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url="https://www.facebook.com/Rk.rakib666"></SocialIcon>
+                    <SocialIcon className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url="https://www.linkedin.com/in/md-rakib-mia-949773229"></SocialIcon>
+                    <SocialIcon className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url="https://twitter.com/MdRakib63447617"></SocialIcon>
+                    <SocialIcon className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url='https://github.com/rkrakibhasan680'></SocialIcon>
+                </div>
+            </div>
+        <div className="container p-6 hidden lg:block md:block">
           <div className="grid lg:grid-cols-6 md:grid-cols-3 gap-4">
             <div className="lg:mb-0 mb-6">
               <img src={footerImg1} alt="footerImg" className="w-full rounded-md shadow-lg" />
@@ -36,7 +48,7 @@ const Footer = () => {
           </div>
         </div>
 
-
+<hr />
         <div className="text-center p-4 bg-gray-500" >
           &copy; Copy Right {currentYear} All right reserved
         </div>

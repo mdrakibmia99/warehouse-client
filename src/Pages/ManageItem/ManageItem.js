@@ -30,7 +30,7 @@ const ManageItem = () => {
     return (
         <div>
             <PageTitle title={'Manage Item'}></PageTitle>
-            <div className='bg-gray-400 py-4 md:px-2 px-2 lg:px-0'>
+            <div className='bg-gray-100 py-4 md:px-2 px-2 lg:px-0'>
                 <h1 className='text-center text-6xl py-2'>Our Services</h1>
                 <hr className='w-36 mx-auto rounded-lg  py-1 bg-[#00a1e5]' />
                 {products.length === 0 &&
