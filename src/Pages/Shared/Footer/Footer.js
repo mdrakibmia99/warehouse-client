@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { SocialIcon } from 'react-social-icons';
 import './Footer.css'
 
@@ -19,10 +18,10 @@ const Footer = () => {
       <div className='container mx-auto  rounded-xl py-4 flex justify-center items-center'>
                 <h2 className='text-white mr-4 hidden lg:block md:block'>Connect with me there:</h2>
                 <div className='grid lg:grid-cols-5 gap-2 md:grid-cols-4 grid-cols-4'>
-                    <SocialIcon className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url="https://www.facebook.com/Rk.rakib666"></SocialIcon>
-                    <SocialIcon className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url="https://www.linkedin.com/in/md-rakib-mia-949773229"></SocialIcon>
-                    <SocialIcon className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url="https://twitter.com/MdRakib63447617"></SocialIcon>
-                    <SocialIcon className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url='https://github.com/rkrakibhasan680'></SocialIcon>
+                    <SocialIcon target={'_blank'} className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url="https://www.facebook.com/Rk.rakib666"></SocialIcon>
+                    <SocialIcon target={'_blank'}  className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url="https://www.linkedin.com/in/md-rakib-mia-949773229"></SocialIcon>
+                    <SocialIcon target={'_blank'} className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url="https://twitter.com/MdRakib63447617"></SocialIcon>
+                    <SocialIcon target={'_blank'} className='mx-2 border-2 rounded-full bg-white border-white hover:scale-[1.1] transition duration-200 ease-in-out' url='https://github.com/rkrakibhasan680'></SocialIcon>
                 </div>
             </div>
         <div className="container p-6 hidden lg:block md:block">
