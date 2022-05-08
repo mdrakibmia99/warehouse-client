@@ -30,11 +30,19 @@ const Inventory = () => {
     const handleItemReduce = () => {
         const quantity = products?.qty - 1;
         const product = { qty: quantity };
+
+        if (product.qty >= 0) {
         axios.put(`https://desolate-ridge-35981.herokuapp.com/product/${id}`, product)
             .then(res => {
                 toast('item delivered!');
             })
+        } else {
+            toast('sorry, Quantity never be negative!!!');
+        }
     };
+
+
+
 
     const handleItemIncrease = (event) => {
         event.preventDefault();

@@ -17,7 +17,7 @@ const TableCart = (props) => {
                 {name}
             </td>
             <td className="px-6 py-4 font-bold">
-                {price}
+                ${price}
             </td>
             <td className="px-6 py-4">
                 {supplier}
