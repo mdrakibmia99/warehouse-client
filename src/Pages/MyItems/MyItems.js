@@ -12,7 +12,7 @@ const MyItems = () => {
 
     useEffect(() => {
         const getOrders = async () => {
-            const url = `http://localhost:5000/order?email=${user?.email}`;
+            const url = `https://warehouse-server-five.vercel.app/order?email=${user?.email}`;
             const { data } = await axios.get(url);
             setOrders(data);
         
@@ -25,7 +25,7 @@ const MyItems = () => {
 
         const yes = window.confirm('Want to delete this item?');
         if (yes) {
-            axios.delete(`http://localhost:5000/myItems/${id}`)
+            axios.delete(`https://warehouse-server-five.vercel.app/myItems/${id}`)
                     .then(res => {
                 toast('item deleted!');
             })

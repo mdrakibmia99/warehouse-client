@@ -21,7 +21,7 @@ const AddItem = () => {
 
         const product = { email, img, name, desc, price, qty, supplier };
 
-        axios.post('http://localhost:5000/addProduct', product)
+        axios.post('https://warehouse-server-five.vercel.app/addProduct', product)
             .then(res => {
                 toast('item added!');
                 event.target.reset();

@@ -8,7 +8,7 @@ const Inventory = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/product/${id}`)
+        axios.get(`https://warehouse-server-five.vercel.app/product/${id}`)
             .then(res => setProducts(res?.data))
     }, [products, id]);
 
@@ -19,7 +19,7 @@ const Inventory = () => {
         const price = event.target.price.value;
         const img = event.target.photo.value;
         const product = { img, name, price };
-        axios.put(`http://localhost:5000/product/${id}`, product)
+        axios.put(`https://warehouse-server-five.vercel.app/product/${id}`, product)
             .then(res => {
 
                 toast('item updated!');
@@ -32,7 +32,7 @@ const Inventory = () => {
         const product = { qty: quantity };
 
         if (product.qty >= 0) {
-        axios.put(`http://localhost:5000/product/${id}`, product)
+        axios.put(`https://warehouse-server-five.vercel.app/product/${id}`, product)
             .then(res => {
                 toast('item delivered!');
             })
@@ -51,7 +51,7 @@ const Inventory = () => {
 
             const qty = products?.qty + updateQuantity;
             const product = { qty };
-            axios.put(`http://localhost:5000/product/${id}`, product)
+            axios.put(`https://warehouse-server-five.vercel.app/product/${id}`, product)
                 .then(res => {
                     event.target.reset();
                     toast('item restocked!');

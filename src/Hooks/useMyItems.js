@@ -5,7 +5,7 @@ const useMyItems = () => {
     const [myItems, setMyItems] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/myProduct')
+        axios.get('https://warehouse-server-five.vercel.app/myProduct')
             .then(res => setMyItems(res?.data))
     }, []);
 

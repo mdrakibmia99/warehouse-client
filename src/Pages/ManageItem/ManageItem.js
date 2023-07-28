@@ -10,14 +10,14 @@ const ManageItem = () => {
     const [products, setProducts] = useState([]);
     const [allProductCount,setAllProductCount]=useState(0);
     useEffect(() => {
-        fetch(`http://localhost:5000/product?page=${page}&size=${pageSize}`)
+        fetch(`https://warehouse-server-five.vercel.app/product?page=${page}&size=${pageSize}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [page, pageSize]);
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/productCount')
+        fetch('https://warehouse-server-five.vercel.app/productCount')
             .then(res => res.json())
             .then(data => {
                 const productCount = data.count;
