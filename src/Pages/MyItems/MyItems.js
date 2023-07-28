@@ -12,7 +12,7 @@ const MyItems = () => {
 
     useEffect(() => {
         const getOrders = async () => {
-            const url = `https://desolate-ridge-35981.herokuapp.com/order?email=${user?.email}`;
+            const url = `http://localhost:5000/order?email=${user?.email}`;
             const { data } = await axios.get(url);
             setOrders(data);
         
@@ -25,7 +25,7 @@ const MyItems = () => {
 
         const yes = window.confirm('Want to delete this item?');
         if (yes) {
-            axios.delete(`https://desolate-ridge-35981.herokuapp.com/myItems/${id}`)
+            axios.delete(`http://localhost:5000/myItems/${id}`)
                     .then(res => {
                 toast('item deleted!');
             })

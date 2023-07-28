@@ -10,14 +10,14 @@ const ManageItem = () => {
     const [products, setProducts] = useState([]);
     const [allProductCount,setAllProductCount]=useState(0);
     useEffect(() => {
-        fetch(`https://desolate-ridge-35981.herokuapp.com/product?page=${page}&size=${pageSize}`)
+        fetch(`http://localhost:5000/product?page=${page}&size=${pageSize}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [page, pageSize]);
 
 
     useEffect(() => {
-        fetch('https://desolate-ridge-35981.herokuapp.com/productCount')
+        fetch('http://localhost:5000/productCount')
             .then(res => res.json())
             .then(data => {
                 const productCount = data.count;

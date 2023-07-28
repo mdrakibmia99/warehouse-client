@@ -25,7 +25,7 @@ const Login = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     signInWithEmailAndPassword(email, password);
-    const {data}=await axios.post('https://desolate-ridge-35981.herokuapp.com/login',{email})
+    const {data}=await axios.post('http://localhost:5000/login',{email})
        localStorage.setItem('accessToken',data.token)
   }
 

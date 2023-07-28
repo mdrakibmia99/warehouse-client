@@ -5,7 +5,7 @@ const useProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('https://desolate-ridge-35981.herokuapp.com/product')
+        axios.get('http://localhost:5000/product')
             .then(res => setProducts(res?.data))
     }, []);
 

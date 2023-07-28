@@ -5,7 +5,7 @@ const useMyItems = () => {
     const [myItems, setMyItems] = useState([]);
 
     useEffect(() => {
-        axios.get('https://desolate-ridge-35981.herokuapp.com/myProduct')
+        axios.get('http://localhost:5000/myProduct')
             .then(res => setMyItems(res?.data))
     }, []);
 

@@ -40,7 +40,7 @@ const Home = () => {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('https://desolate-ridge-35981.herokuapp.com/product')
+        fetch('http://localhost:5000/product')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);

@@ -21,7 +21,7 @@ const AddItem = () => {
 
         const product = { email, img, name, desc, price, qty, supplier };
 
-        axios.post('https://desolate-ridge-35981.herokuapp.com/addProduct', product)
+        axios.post('http://localhost:5000/addProduct', product)
             .then(res => {
                 toast('item added!');
                 event.target.reset();
